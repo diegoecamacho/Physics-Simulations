@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int NumberOfObjectives;
     public int objectivesDone = 0;
 
+    public Transform targetLocation;
+
     private void Awake()
     {
         if (Instance)

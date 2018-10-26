@@ -21,41 +21,44 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
+        var coefficientofFriction = GetComponent<Collider>().material.dynamicFriction;
+
+
+
+        var forceApplied = PhysicsCalculator.CalculateFlatForceRequired()
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        _horizontalAxis = Input.GetAxis("Horizontal");
-        _forwardAxis = Input.GetAxis("Vertical");
+    //// Update is called once per frame
+    //private void Update()
+    //{
+    //    _horizontalAxis = Input.GetAxis("Horizontal");
+    //    _forwardAxis = Input.GetAxis("Vertical");
 
-        if (colliding && Input.GetButtonDown("Activate"))
-        {
-            var result = sliderController.ActivateSlider();
-            if (result)
-            {
-                sliderValue = sliderController.ReturnSliderValue();
-            }
-        }
+    //    if (colliding && Input.GetButtonDown("Activate"))
+    //    {
+    //        var result = sliderController.ActivateSlider();
+    //        if (result)
+    //        {
+    //            sliderValue = sliderController.ReturnSliderValue();
+    //        }
+    //    }
 
-        if (_horizontalAxis != 0 || _forwardAxis != 0)
-        {
-            _rigidBody.AddForce(new Vector3(_horizontalAxis, 0, _forwardAxis) * PlayerSpeed);
-        }
-    }
+    //    if (_horizontalAxis != 0 || _forwardAxis != 0)
+    //    {               
+    //        _rigidBody.velocity = new Vector3(_horizontalAxis * PlayerSpeed, Physics.gravity.y, _forwardAxis * PlayerSpeed);
+    //    }
+    //}
 
-    private void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.CompareTag("Floor")) return;
+    //private void OnCollisionStay(Collision other)
+    //{
+    //    if (other.gameObject.CompareTag("Floor")) return;
+    //    colliding = true;
+    //}
 
-        colliding = true;
-    }
+    //private void OnCollisionExit(Collision other)
+    //{
+    //    if (other.gameObject.CompareTag("Floor")) return;
+    //    colliding = false;
 
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Floor")) return;
-
-        colliding = false;
-
-    }
+    //}
 }
